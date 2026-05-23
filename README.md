@@ -11,4 +11,4 @@ remove item --> Click minus sign beside the item you would like to remove.
 Items are displayed below it alphabetical order or reverse alphabetical order. 
 click sort to adjust order of items.
 
-
+update
