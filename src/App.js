@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import style from "./components/mainStyle.module.css";
 import Navigation from "./Navigation";
-import  Contact from "./Routes/Contact";
+import Contact from "./Routes/Contact";
 import TodoContainer from "./components/TodoContainer";
 
 async function fetchData(setTodoList, setIsLoading) {
@@ -28,7 +28,7 @@ async function fetchData(setTodoList, setIsLoading) {
       title: record.fields.title,
       id: record.id,
     }));
-    
+
     setTodoList(todos);
     setIsLoading(false);
   } catch (error) {
@@ -50,7 +50,7 @@ function App() {
       localStorage.setItem("savedTodoList", JSON.stringify(todoList));
     }
   }, [todoList, isLoading]);
-  
+
   return (
     <div>
       <BrowserRouter>
@@ -61,19 +61,20 @@ function App() {
               <>
                 <div className={`${style.body} `}>
                   <Navigation />
-                  <TodoContainer REACT_APP_TABLE_NAME={process.env.REACT_APP_TABLE_NAME} />
+                  <TodoContainer
+                    REACT_APP_TABLE_NAME={process.env.REACT_APP_TABLE_NAME}
+                  />
                   <img
                     src="https://www.foodbusinessnews.net/ext/resources/2022/09/27/grocery-shop_AdobeStock_LEAD.jpeg?height=667&t=1664296643&width=1080"
                     className={`${style.cartPic}`}
                     alt="ShopCartPic"
-                    />
+                  />
                 </div>
               </>
             }
           />
-        
+
           <Route path="/Contact" element={<Contact />} />
-          
         </Routes>
       </BrowserRouter>
     </div>
